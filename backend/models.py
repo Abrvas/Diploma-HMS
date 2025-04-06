@@ -38,6 +38,7 @@ class Doctor(models.Model):
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     password = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to='doctor_photos/', blank=True, null=True)
 
     class Meta:
         db_table = 'doctors'
