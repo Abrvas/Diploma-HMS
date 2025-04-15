@@ -1,0 +1,109 @@
+@import './styles/components.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --theme-transition-duration: 400ms;
+    --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html, body {
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900;
+    font-family: 'Inter var', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  #root {
+    @apply min-h-screen flex flex-col;
+  }
+
+  /* Base theme transition styles */
+  *, *::before, *::after {
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+                border-color var(--theme-transition-duration) var(--theme-transition-easing),
+                color var(--theme-transition-duration) var(--theme-transition-easing),
+                fill var(--theme-transition-duration) var(--theme-transition-easing),
+                stroke var(--theme-transition-duration) var(--theme-transition-easing),
+                opacity var(--theme-transition-duration) var(--theme-transition-easing),
+                box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+                transform var(--theme-transition-duration) var(--theme-transition-easing);
+  }
+
+  /* Prevent transition flicker */
+  .theme-transitioning * {
+    transition: none !important;
+  }
+
+  /* Base dark mode styles */
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.dark.100') transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-dark-100 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-50;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
