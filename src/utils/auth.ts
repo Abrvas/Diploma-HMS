@@ -19,6 +19,7 @@ export async function login(email: string, password: string) {
   localStorage.setItem('doctor_id', data.doctor_id);
   localStorage.setItem('name', data.name);
   localStorage.setItem('role', data.role);
+  localStorage.setItem('avatar', data.avatar);
 
   return data;
 }

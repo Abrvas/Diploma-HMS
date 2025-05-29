@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Bell, Search, X, Check, User, Settings, LogOut } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Bell, Search, Check, User, Settings, LogOut } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { useNotificationStore, Notification } from '../../store/notificationStore';
 import { format } from 'date-fns';
-import { ThemeToggle } from '../ThemeToggle';
+import { ThemeToggle } from "../ui/ThemeToggle";
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const navigate = useNavigate();
-  const { user, logout } = useAuthStore();
+  const { name, role, avatar, logout } = useAuthStore();
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotificationStore();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -148,7 +148,7 @@ export const Header = () => {
               </div>
             )}
           </div>
-          
+
           {/* Profile Menu */}
           <div className="relative">
             <div
@@ -157,12 +157,12 @@ export const Header = () => {
               className="flex items-center gap-4 cursor-pointer"
             >
               <div className="text-right mr-2">
-                <p className="text-sm font-medium text-gray-900 dark:text-light-200">{user?.name}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{user?.role}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-light-200">{name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{role}</p>
               </div>
               <img
-                src={user?.avatar}
-                alt={user?.name}
+                src={avatar || ''}
+                alt={name || 'Profile'}
                 className="w-10 h-10 rounded-full border-2 border-gray-100 dark:border-dark-100 hover:border-brand-purple dark:hover:border-brand-purple transition-colors"
               />
             </div>
